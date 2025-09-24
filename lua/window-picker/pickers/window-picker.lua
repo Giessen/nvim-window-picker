@@ -68,10 +68,8 @@ function M:pick_window()
 		return
 	end
 
-	if self.autoselect_one then
-	  if #windows == 1 then
-		  return windows[1]
-		end
+	if self.autoselect_one and #windows == 1 then
+    return windows[1]
 	end
 
 	local window = nil
@@ -85,9 +83,6 @@ function M:pick_window()
 	end
 
 	local char = util.get_user_input_char(self.handle_mouse_click)
-	if char == "" or char == nil then
-    -- return self:_get_first_empty_window(windows) -- @ADDED. auto-select 1st empty one for multi-window case
-  end
 
 	vim.cmd.redraw()
 
@@ -99,6 +94,8 @@ function M:pick_window()
 
 	if char then
 		window = self:_find_matching_win_for_char(char, windows)
+  else
+    window = self:_get_first_empty_window(windows) -- @ADDED. auto-select 1st empty one for multi-window case
 	end
 
 	return window
