@@ -72,7 +72,7 @@ function M:pick_window()
 	  if #windows == 1 then
 		  return windows[1]
 		else
-		  return self:_get_first_empty_window() -- @ADDED. auto-select 1st empty one for multi-window case
+		  return self:_get_first_empty_window(windows) -- @ADDED. auto-select 1st empty one for multi-window case
 		end
 	end
 
