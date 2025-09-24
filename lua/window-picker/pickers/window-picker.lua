@@ -95,7 +95,9 @@ function M:pick_window()
 
 	if char then
 	  if char == "\r" or char == "\n" then -- @ADDED. press <Enter> key without other inputs
-      window = self:_get_first_empty_window(windows) -- @ADDED. auto-select 1st empty one for multi-window case
+	    if self.autoselect_empty then
+        window = self:_get_first_empty_window(windows) -- @ADDED. auto-select 1st empty one for multi-window case
+      end
 	  else
 	  	window = self:_find_matching_win_for_char(char, windows)
  	  end
