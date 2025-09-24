@@ -91,7 +91,8 @@ function M:pick_window()
 	if char == '<LeftMouse>' then
 		return vim.fn.getmousepos().winid
 	end
-
+print("char1: " .. char)
+print(string.format("char2: '%s'", char))
 	if char then
 		window = self:_find_matching_win_for_char(char, windows)
   else
