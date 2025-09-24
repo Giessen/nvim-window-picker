@@ -94,9 +94,11 @@ function M:pick_window()
 print("char1: " .. char)
 print(string.format("char2: '%s'", char))
 	if char then
-		window = self:_find_matching_win_for_char(char, windows)
-  else
-    window = self:_get_first_empty_window(windows) -- @ADDED. auto-select 1st empty one for multi-window case
+	  if char == '^M' then -- @ADDED. press <Enter> key without other inputs
+      window = self:_get_first_empty_window(windows) -- @ADDED. auto-select 1st empty one for multi-window case
+	  else
+	  	window = self:_find_matching_win_for_char(char, windows)
+ 	  end
 	end
 
 	return window
