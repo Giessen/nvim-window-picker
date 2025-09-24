@@ -32,6 +32,11 @@ function M._backward_compatibility_config_changes(config)
 		filter_rules.autoselect_one = config.autoselect_one
 	end
 
+  -- @ADDED
+	if config.autoselect_empty then
+  	filter_rules.autoselect_empty = config.autoselect_empty
+  end
+
 	-- backward compatibility to config.include_current_win
 	if config.include_current_win then
 		filter_rules.include_current_win = config.include_current_win

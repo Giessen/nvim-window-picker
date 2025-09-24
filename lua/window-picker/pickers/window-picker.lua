@@ -17,6 +17,7 @@ function M:set_config(config)
 	self.show_prompt = config.show_prompt
 	self.prompt_message = config.prompt_message
 	self.autoselect_one = config.filter_rules.autoselect_one
+  self.autoselect_empty = config.filter_rules.autoselect_empty
 	self.handle_mouse_click = config.picker_config.handle_mouse_click
 	return self
 end

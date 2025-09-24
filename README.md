@@ -122,6 +122,10 @@ require 'window-picker'.setup({
         -- without prompting the user to select
         autoselect_one = true,
 
+        -- @ADDED.
+        -- when there are multiple windows and press enter, use the 1st empty one
+        autoselect_empty = true,
+
         -- whether you want to include the window you are currently on to window
         -- selection or not
         include_current_win = false,
