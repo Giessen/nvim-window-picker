@@ -36,6 +36,19 @@ function M:_get_windows()
 	return self.filter:filter_windows(all_windows)
 end
 
+-- @ADDED. get 1st empty window
+function M:_get_first_empty_window(windows)
+  for _, win in ipairs(windows) do
+    local bufnr = vim.api.nvim_win_get_buf(win)
+    local bufname = vim.api.nvim_buf_get_name(bufnr)
+    -- Check if buffer name is empty, meaning empty window
+    if bufname == "" or bufname == nil then
+      return win
+    end
+  end
+  return nil
+end
+
 function M:_find_matching_win_for_char(user_input_char, windows)
 	for index, char in ipairs(self.chars) do
 		if user_input_char:lower() == char:lower() then
@@ -55,8 +68,12 @@ function M:pick_window()
 		return
 	end
 
-	if self.autoselect_one and #windows == 1 then
-		return windows[1]
+	if self.autoselect_one then
+	  if #windows == 1 then
+		  return windows[1]
+		else
+		  return self:_get_first_empty_window() -- @ADDED. auto-select 1st empty one for multi-window case
+		end
 	end
 
 	local window = nil
