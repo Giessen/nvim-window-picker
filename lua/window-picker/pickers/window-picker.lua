@@ -91,10 +91,9 @@ function M:pick_window()
 	if char == '<LeftMouse>' then
 		return vim.fn.getmousepos().winid
 	end
-print("char1: " .. char)
-print(string.format("char2: '%s'", char))
+
 	if char then
-	  if char == '^M' then -- @ADDED. press <Enter> key without other inputs
+	  if char == "\r" or char == "\n" then -- @ADDED. press <Enter> key without other inputs
       window = self:_get_first_empty_window(windows) -- @ADDED. auto-select 1st empty one for multi-window case
 	  else
 	  	window = self:_find_matching_win_for_char(char, windows)
